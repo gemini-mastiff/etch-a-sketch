@@ -4,3 +4,13 @@
     box-sizing: border-box;
     border: 1px red solid;
 }
+
+.flex{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    width: 960px;
+    height: 960px;
+}
