@@ -1,11 +1,11 @@
 const container = document.querySelector("#grid")
 
 //create function for generating grid
-function createGrid(sideNum){
-    for (let v in sideNum){
-        let row = document.createElement("div");
-        row.classList.add("row");
-        for (let h in sideNum){
+function createGrid(){
+    for (let v = 1; v <= sideNum; v++){
+        const row = document.createElement("div");
+        row.classList.add("row", "flex");
+        for (let h = 1; h <= sideNum; h++){
             let square = document.createElement("div");
             square.classList.add("square");
             row.appendChild(square);
@@ -16,6 +16,6 @@ function createGrid(sideNum){
       
 let sideNum = 16;
 
-document.addEventListener("load", () => {
-    createGrid(sideNum);
+window.addEventListener("load", (event) => {
+    createGrid();
 });
