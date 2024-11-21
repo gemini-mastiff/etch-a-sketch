@@ -1,6 +1,5 @@
 const container = document.querySelector("#grid");
 const btn = document.querySelector("#newGrid");
-let sideNum = 16;
 
 function getNum(){
     return num = parseInt(prompt("How many squares per side? 1-100"));
@@ -15,28 +14,25 @@ function createGrid(num){
             square.classList.add("square");
             row.appendChild(square);
         }
-        container.appendChild(row);
+    container.appendChild(row);
     }
-
-    const gridSquares = document.querySelectorAll(".square");
-    const gridRows = document.querySelectorAll(".row")
-
-    gridSquares.forEach((square) => {
-        square.addEventListener("mouseenter", () => {
-            square.classList.add("hover");
-        });
-    });
-
-    btn.addEventListener("click", () =>{
-        gridRows.forEach((row) =>{
-            row.remove()
-        });
-        let sideNum = getNum()
-        createGrid(sideNum);
-    })
 }
 
-window.addEventListener("load", () => {
-    createGrid(sideNum);
+createGrid(16);
+
+const gridRows = document.querySelectorAll(".row")
+const gridSquares = document.querySelectorAll(".square");
+
+gridSquares.forEach((square) => {
+    square.addEventListener("mouseenter", () => {
+        square.classList.add("hover");
+    });
 });
 
+btn.addEventListener("click", () => {
+    gridRows.forEach((row) =>{
+        row.remove()
+    });
+    let sideNum = getNum()
+    createGrid(sideNum);
+})
