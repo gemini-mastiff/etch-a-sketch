@@ -31,3 +31,7 @@ body{
 .square{
     border: 1px solid lightgrey;
 }
+
+.hover{
+    background-color: grey;
+}

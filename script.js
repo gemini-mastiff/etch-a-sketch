@@ -1,4 +1,4 @@
-const container = document.querySelector("#grid")
+const container = document.querySelector("#grid");
 
 //create function for generating grid
 function createGrid(){
@@ -11,9 +11,17 @@ function createGrid(){
             row.appendChild(square);
         }
         container.appendChild(row);
+
+    let gridSquares = document.querySelectorAll(".square");
+
+    gridSquares.forEach((square) => {
+        square.addEventListener("mouseenter", () => {
+            square.classList.add("hover");
+        });
+    });
     }
 }
-      
+
 let sideNum = 16;
 
 window.addEventListener("load", (event) => {
