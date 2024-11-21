@@ -1,10 +1,11 @@
 const container = document.querySelector("#grid");
 const btn = document.querySelector("#newGrid");
-let sideNum;
+let gridRows;
+let gridSquares;
 
 function getNum(){
     let choiceLoop = true;
-    let pattern = /[\D]/gm
+    const pattern = /[\D]/gm
     while (choiceLoop === true){
         num = parseInt(prompt("How many squares per side? 1-100"));
         if (pattern.test(num)
@@ -18,12 +19,12 @@ function getNum(){
     }
 };
 
-function createGrid(num){
+function generateSquares(num){
     for (let v = 1; v <= num; v++){
         const row = document.createElement("div");
         row.classList.add("row", "flex");
         for (let h = 1; h <= num; h++){
-            let square = document.createElement("div");
+            const square = document.createElement("div");
             square.classList.add("square");
             row.appendChild(square);
         }
@@ -31,9 +32,20 @@ function createGrid(num){
     }
 };
 
-createGrid(16);
-let gridRows = document.querySelectorAll(".row")
-let gridSquares = document.querySelectorAll(".square");
+function createGrid(num){
+    generateSquares(num);
+    //Each time generateSquares is called, gridRows & gridSquares
+    //are reassigned to current grid
+    gridRows = document.querySelectorAll(".row")
+    gridSquares = document.querySelectorAll(".square");
+
+    //Must stay within same scope as gridSquares to function
+    gridSquares.forEach((square) => {
+        square.addEventListener("mouseenter", () => {
+            square.classList.add("hover");
+        });
+    });
+};
 
 function removeGrid() {
     gridRows.forEach((row) =>{
@@ -41,16 +53,9 @@ function removeGrid() {
     });
 };
 
-gridSquares.forEach((square) => {
-    square.addEventListener("mouseenter", () => {
-        square.classList.add("hover");
-    });
-});
+createGrid(16);
 
 btn.addEventListener("click", () => {
     removeGrid();
-    sideNum = getNum();
-    createGrid(sideNum);
-    gridRows = document.querySelectorAll(".row")
-    gridSquares = document.querySelectorAll(".square");
+    createGrid(getNum());
 });
